@@ -94,3 +94,16 @@ class Board:
         Checks if the game is a draw (i.e., no more valid moves).
         """
         return np.all(self.board != 0)
+
+    def get_state_representation(self):
+        """
+        Returns the current state of the board as a 3D tensor suitable for input to a neural network.
+        """
+        state = np.zeros((ROW_COUNT, COLUMN_COUNT, 2))
+        for r in range(ROW_COUNT):
+            for c in range(COLUMN_COUNT):
+                if self.board[r][c] == 1:
+                    state[r][c][0] = 1
+                elif self.board[r][c] == 2:
+                    state[r][c][1] = 1
+        return state

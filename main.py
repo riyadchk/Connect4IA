@@ -5,10 +5,6 @@ from players.dqn_agent import DQNPlayer
 from utils.gui import GUI  # Make sure this path matches your project structure
 import sys
 import argparse
-import torch
-
-
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def simulate_game(use_gui=False):
@@ -19,7 +15,7 @@ def simulate_game(use_gui=False):
     gui = GUI() if use_gui else None
 
     player1 = HumanPlayer(1, gui)
-    player2 = DQNPlayer(2, 42 * 2, model_path="players/trained_models/player21000.pth")
+    player2 = HumanPlayer(2, gui)
     players = [player1, player2]
 
     if use_gui:
