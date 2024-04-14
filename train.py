@@ -40,7 +40,7 @@ class Training:
                         if turn % 2 == 0:
                             current_turn += 1
                         next_state = current_player._get_state_from_board(board)
-                        reward = -5  # Reward for taking a step 
+                        reward = -50  # Reward for taking a step 
 
                         if board.winning_move(current_player.piece):
                             reward = 100  
@@ -69,7 +69,7 @@ class Training:
             self.player2.replay(self.batch_size)
 
             # update target model
-            if episode % 20 == 0:
+            if episode % 10 == 0:
                 self.player1.update_target_model()
                 self.player2.update_target_model()
 
@@ -153,6 +153,9 @@ class Training:
         axs[2].set_title("Evaluation Curve")
         axs[2].set_xlabel("episode")
         axs[2].set_ylabel("Win Rate")
+
+        # save the plot
+        plt.savefig(f"training_results/{self.n_games}.png")
         plt.show()
 
 
@@ -162,8 +165,8 @@ if __name__ == "__main__":
     player2 = DQNPlayer(
         piece=2, input_dim=input_dim
     ) 
-    n_games = 100000  # Number of games to simulate
-    batch_size = 150  # Example batch size for training
+    n_games = 200000
+    batch_size = 1000 
     stats = Training(player1, player2, n_games, batch_size)
     stats.simulate_games()
     stats.display_stats()

@@ -2,13 +2,14 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+
 class DQN(nn.Module):
     def __init__(self):
         super(DQN, self).__init__()
         self.conv1 = nn.Conv2d(2, 32, kernel_size=3, stride=1, padding=1)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)
-        self.fc1 = nn.Linear(64 * 6 * 7, 128)
-        self.fc2 = nn.Linear(128, 128)
+        self.fc1 = nn.Linear(64 * 6 * 7, 256)
+        self.fc2 = nn.Linear(256, 128)
         self.fc3 = nn.Linear(128, 7)
 
     def forward(self, x):

@@ -66,8 +66,8 @@ class Stats:
         axs[1].set_ylabel("Frequency")
 
         plt.tight_layout()
-        plt.show()
-
+        # save the plot
+        plt.savefig("game_stats.png")
 
 if __name__ == "__main__":
     player1 = RandomPlayer(1)
