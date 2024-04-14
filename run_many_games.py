@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
-from players.random_player import RandomPlayer  # Adjust import as necessary
+from players.random_player import RandomPlayer 
+from players.dqn_agent import DQNPlayer
 from game.board import Board
 import numpy as np
-
+from tqdm import tqdm
 
 class Stats:
     def __init__(self, player1, player2, n_games):
@@ -13,7 +14,7 @@ class Stats:
         self.turns = []
 
     def simulate_games(self):
-        for _ in range(self.n_games):
+        for game in tqdm(range(self.n_games)):
             board = Board()
             game_over = False
             turn = 0
@@ -67,12 +68,12 @@ class Stats:
 
         plt.tight_layout()
         # save the plot
-        plt.savefig("game_stats.png")
+        plt.savefig(f"results/test_{self.n_games}.png")
 
 if __name__ == "__main__":
-    player1 = RandomPlayer(1)
+    player1 = DQNPlayer(1, input_dim=42, model_path="players/trained_models/player1_1000.pth")
     player2 = RandomPlayer(2)
-    n_games = 10000  # Example: simulate 100 games
+    n_games = 1000  
     stats = Stats(player1, player2, n_games)
     stats.simulate_games()
     stats.display_stats()

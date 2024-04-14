@@ -155,7 +155,7 @@ class Training:
         axs[2].set_ylabel("Win Rate")
 
         # save the plot
-        plt.savefig(f"training_results/{self.n_games}.png")
+        plt.savefig(f"results/train_{self.n_games}.png")
         plt.show()
 
 
@@ -165,8 +165,8 @@ if __name__ == "__main__":
     player2 = DQNPlayer(
         piece=2, input_dim=input_dim
     ) 
-    n_games = 200000
-    batch_size = 1000 
+    n_games = 1000
+    batch_size = 10
     stats = Training(player1, player2, n_games, batch_size)
     stats.simulate_games()
     stats.display_stats()
