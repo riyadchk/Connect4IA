@@ -22,7 +22,6 @@ class HumanPlayer(Player):
         if self.gui:
             return self.gui.wait_for_human_move()
         else:
-            # Fallback for no GUI: Prompt for terminal input (not ideal for real-time gameplay)
             col = int(input("Select column (0-6): "))
             while not board.is_valid_location(col):
                 col = int(

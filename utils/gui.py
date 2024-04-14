@@ -96,7 +96,6 @@ class GUI:
     def wait(self, milliseconds):
         pygame.time.delay(milliseconds)
 
-    # Inside the GUI class in utils/gui.py
 
     def wait_for_human_move(self):
         """

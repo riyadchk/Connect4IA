@@ -1,0 +1,5 @@
+.venv
+__pycache__/
+players/trained_models/
+
+game/__pycache__/

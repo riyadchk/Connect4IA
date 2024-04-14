@@ -1,5 +1,5 @@
 import numpy as np
-from .constants import ROW_COUNT, COLUMN_COUNT  # Adjust import path as necessary
+from .constants import ROW_COUNT, COLUMN_COUNT  
 
 
 class Board:

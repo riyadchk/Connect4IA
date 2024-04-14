@@ -1,7 +1,7 @@
 import random
-from .player import Player  # Adjust import path as necessary
-from game.constants import COLUMN_COUNT  # Adjust import path as necessary
-from game.board import Board  # This import is for type hinting and IDE autocompletion
+from .player import Player  
+from game.constants import COLUMN_COUNT  
+from game.board import Board  
 
 
 class RandomPlayer(Player):

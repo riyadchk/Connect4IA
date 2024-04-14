@@ -2,7 +2,7 @@ from game.board import Board
 from players.random_player import RandomPlayer
 from players.human_player import HumanPlayer
 from players.dqn_agent import DQNPlayer
-from utils.gui import GUI  # Make sure this path matches your project structure
+from utils.gui import GUI 
 import sys
 import argparse
 

@@ -26,7 +26,7 @@ class DQNPlayer(Player):
         self.target_model = DQN()  # For more stable Q-targets
         self.target_model.to(device)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=lr)
-        self.memory = ReplayBuffer(10000)  # Assuming capacity of 10000
+        self.memory = ReplayBuffer(10000)  # Experience replay buffer
         self.epsilon = epsilon
         self.epsilon_min = 0.1
         self.epsilon_decay = 0.999
@@ -71,10 +71,8 @@ class DQNPlayer(Player):
         self.target_model.load_state_dict(self.model.state_dict())
 
     def move(self, board):
-        # Your method to convert the board to the input state
         state = self._get_state_from_board(board)
         action = self.act(state)
-        # Ensure action is valid
         return action
 
     def _get_state_from_board(self, board):

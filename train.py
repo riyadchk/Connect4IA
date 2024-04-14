@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from game.board import Board
-from players.dqn_agent import DQNPlayer  # Adjust import as necessary
-from players.random_player import RandomPlayer  # Adjust import as necessary
+from players.dqn_agent import DQNPlayer  
+from players.random_player import RandomPlayer  
 import numpy as np
 from tqdm import tqdm
 
@@ -11,7 +11,7 @@ class Training:
         self.player1 = player1
         self.player2 = player2
         self.n_games = n_games
-        self.batch_size = batch_size  # For DQN replay
+        self.batch_size = batch_size  
         self.results = {"Player 1 Wins": 0, "Player 2 Wins": 0, "Draws": 0}
         self.turns = []
         self.eval = []
@@ -40,16 +40,16 @@ class Training:
                         if turn % 2 == 0:
                             current_turn += 1
                         next_state = current_player._get_state_from_board(board)
-                        reward = -2  # Define your reward here
+                        reward = -5  # Reward for taking a step 
 
                         if board.winning_move(current_player.piece):
-                            reward = 100  # Example reward
+                            reward = 100  
                             game_over = True
                             self.results[
                                 "Player 1 Wins" if turn == 0 else "Player 2 Wins"
                             ] += 1
                         elif board.check_draw():
-                            reward = 50  # Example reward for a draw
+                            reward = 50  
                             game_over = True
                             self.results["Draws"] += 1
 
@@ -81,7 +81,7 @@ class Training:
                     piece=1,
                     input_dim=42,
                     model_path=None,
-                    epsilon=0.0,
+                    epsilon=0.0, # No exploration
                 )
                 # load the model weights
                 test_player.model.load_state_dict(self.player1.model.state_dict())
@@ -157,13 +157,11 @@ class Training:
 
 
 if __name__ == "__main__":
-    input_dim = 42  # Assuming a flattened board state
+    input_dim = 42  
     player1 = DQNPlayer(piece=1, input_dim=input_dim)
     player2 = DQNPlayer(
         piece=2, input_dim=input_dim
-    )  # Could share model weights with player1 for true self-play
-    player1 = player1
-    player2 = player2
+    ) 
     n_games = 100000  # Number of games to simulate
     batch_size = 150  # Example batch size for training
     stats = Training(player1, player2, n_games, batch_size)
